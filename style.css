@@ -51,6 +51,7 @@ tooltip {
 #custom-power_profile,
 #custom-weather,
 #custom-moon,
+#custom-wallpaper,
 #window,
 #clock,
 #battery,
@@ -152,20 +153,12 @@ tooltip {
     margin-right: 10px;
     border-left: 0px;
 }
-
 #battery.warning {
     color: #FFA500;
 }
-
 #battery.critical {
     color: #F00;
-}
-
-/* #custom-weather {
-    border-radius: 0px 10px 10px 0px;
-    border-right: 0px;
-    margin-left: 0px;
-} */
+} 
 #custom-moon {
     border-radius: 0px 10px 10px 0px;
     border-right: 0px;

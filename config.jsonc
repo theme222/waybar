@@ -10,6 +10,7 @@
         "clock",
         "custom/weather",
         "custom/moon",
+        "custom/wall",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -37,7 +38,7 @@
             "5": "🎵"
         },
         "persistent_workspaces": {
-            "*": 5
+            "*": 1
         }
     },
     "hyprland/window": {
@@ -46,24 +47,33 @@
     "custom/weather": {
         "tooltip": true,
         "format": "{}",
-        "interval": 30,
+        "interval": 3600,
         "exec": "~/.config/waybar/scripts/waybar-wttr.py",
         "return-type": "json"
     },
     "custom/moon": {
         "format": "{}",
+        "interval": 3600,
         "exec": "moon"
     },
+
+    "custom/wall":{
+        "format": "{}",
+        "interval":60,
+        "exec":"r-wall & ",
+        "format-alt":"r-wall &"
+    },
+
     "custom/temperature": {
         "tooltip": true,
         "format": " {}",
-        // "interval": 3600,
+        "interval": 30,
         "exec": "cpu"
     },
     "custom/memory": {
         "tooltip": true,
         "format": "🧠 {}",
-        "interval": 60,
+        "interval": 30,
         "exec": "memory"
     },
     "tray": {
