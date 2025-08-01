@@ -48,6 +48,7 @@ tooltip {
     border-radius: 5px;
 }
 
+#pulseaudio,
 #custom-power_profile,
 #custom-weather,
 #custom-moon,
@@ -61,6 +62,7 @@ tooltip {
 #custom-temperature,
 #custom-memory,
 #workspaces,
+#language,
 #tray,
 #backlight {
     background: #1e1e2e;
@@ -72,25 +74,31 @@ tooltip {
     border: 1px solid #181825;
 }
 
-#custom-memory {
+#language,
+#custom-memory,
+#custom-weather,
+#rightborder {
+    border-radius: 0px 10px 10px 0px;
+}
+
+#clock,
+#network,
+#bluetooth,
+#leftborder {
+    border-radius: 10px 0px 0px 10px;
+}
+
+#custom-cpu {
     color: #eba0ac;
 }
 
-#custom-temperature {
-    border-radius: 10px 0px 0px 10px;
+#custom-memory {
+    color: #C3B1E1;
+    margin-right: 10px;
 }
 
 #custom-temperature.critical {
     color: #f00;
-}
-
-#backlight {
-    border-radius: 10px 0px 0px 10px;
-}
-
-#tray {
-    border-radius: 10px;
-    margin-right: 10px;
 }
 
 #workspaces {
@@ -101,66 +109,33 @@ tooltip {
     padding-left: 5px;
 }
 
-#custom-power_profile {
-    color: #a6e3a1;
-    border-left: 0px;
-    border-right: 0px;
-}
-
 #window {
+    border-color: white;
+    border-width: 3px;
     border-radius: 10px;
+    border-style: outset;
     margin-left: 60px;
     margin-right: 60px;
 }
 
 #clock {
     color: #fab387;
-    border-radius: 10px 0px 0px 10px;
     margin-left: 10px;
-    border-right: 0px;
 }
 
 #network {
     color: #f9e2af;
-    border-radius: 10px 0px 0px 10px;
-    border-left: 0px;
-    border-right: 0px;
 }
 
 #bluetooth {
-    color: #89b4fa;
-    border-radius: 0px 10px 10px 0px;
+    color: #77CBDA;
+}
+
+#language {
+    color: #77DD77;
     margin-right: 10px
-} 
+}
 
 #pulseaudio {
-    color: #89b4fa;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#pulseaudio.microphone {
-    color: #cba6f7;
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0px 10px 10px 0px;
-    margin-right: 10px;
-}
-
-#battery {
-    color: #a6e3a1;
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
-    border-left: 0px;
-}
-#battery.warning {
-    color: #FFA500;
-}
-#battery.critical {
-    color: #F00;
-} 
-#custom-moon {
-    border-radius: 0px 10px 10px 0px;
-    border-right: 0px;
-    margin-left: 0px;
+    color: #FF6961;
 }

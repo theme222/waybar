@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
 mkdir -p ~/.config/waybar
-cp -r config-gitlab.jsonc style.css config.jsonc scripts/ ~/.config/waybar
+cp -r style.css config.jsonc scripts/ ~/.config/waybar
 
 echo "Waybar Configuration Done Successfully"
-

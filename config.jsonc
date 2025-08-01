@@ -5,12 +5,10 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 50,
+    "height": 45,
     "modules-left": [
         "clock",
         "custom/weather",
-        "custom/moon",
-        "custom/wall",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -18,24 +16,27 @@
     ],
     "modules-right": [
         "network",
-        "bluetooth",
         "custom/temperature",
         "custom/memory",
-        "battery",
-        "backlight",
+        "bluetooth",
         "pulseaudio",
-        "pulseaudio#microphone"
+        "hyprland/language"
     ],
     "hyprland/workspaces": {
         "format": "{icon}",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
         "format-icons": {
-            "1": "😎",
-            "2": "🌐",
-            "3": "👩🏽‍💻",
-            "4": "📒",
-            "5": "🎵"
+            "1": "1️⃣",
+            "2": "2️⃣",
+            "3": "3️⃣",
+            "4": "4️⃣",
+            "5": "5️⃣",
+            "6": "6️⃣",
+            "7": "7️⃣",
+            "8": "8️⃣",
+            "9": "9️⃣",
+            "10": "🔟"
         },
         "persistent_workspaces": {
             "*": 1
@@ -51,113 +52,34 @@
         "exec": "~/.config/waybar/scripts/waybar-wttr.py",
         "return-type": "json"
     },
-    "custom/moon": {
-        "format": "{}",
-        "interval": 3600,
-        "exec": "moon"
-    },
-
-    "custom/wall":{
-        "format": "{}",
-        "interval":60,
-        "exec":"r-wall & ",
-        "format-alt":"r-wall &"
-    },
 
     "custom/temperature": {
         "tooltip": true,
-        "format": " {}",
-        "interval": 30,
-        "exec": "cpu"
+        "format": "🌡️ {} °C",
+        "interval": 10,
+        "exec": "echo $(($(cat /sys/class/thermal/thermal_zone3/temp) / 1000))"
     },
     "custom/memory": {
         "tooltip": true,
-        "format": "🧠 {}",
-        "interval": 30,
-        "exec": "memory"
+        "format": "💾 {}",
+        "interval": 10,
+        "exec": "free -h | grep 'Mem:' | sed 's/.*[ ]\\([^[ ]*\\)$/\\1/'"
     },
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
-    },
+
     "clock": {
-        "format": "{: %I:%M %p  %a, %b %e}",
+        "interval": 60,
+        "format": "🕖 {:%H:%M 🗓️ %a, %d %b %Y}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
     },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": [
-            "󰃞",
-            "󰃟",
-            "󰃠"
-        ],
-        "on-scroll-up": "brightnessctl -q set 1%+",
-        "on-scroll-down": "brightnessctl -q set 1%-"
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 40,
-            "critical": 30
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": [
-            "󰂎",
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁾",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ]
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "tooltip": false,
-        "format-muted": " Muted",
-        "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 100,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        }
-    },
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": " Muted",
-        "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
-    },
+
     "network": {
+        "interval": 5,
         "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "format-linked": "{ifname} (No IP)",
+        "format": "{ipaddr} 🔽 {bandwidthDownBits} 🔼 {bandwidthUpBits}",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
     },
+
     "bluetooth": {
         "format": " {status}",
         "format-disabled": "", // an empty format will hide the module
@@ -165,5 +87,26 @@
         "tooltip-format": "{device_alias}",
         "tooltip-format-connected": " {device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}"
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "ignored-sinks": ["Easy Effects Sink"]
+    },
+
+    "hyprland/language": {
+        "format": "⌨️ {}",
+        "format-en": "English",
+        "format-th": "Thai",
+        "keyboard-name": "bridge75-2.4g",
+        "on-click": "hyprctl switchxkblayout bridge75-2.4g next"
     }
+
 }
